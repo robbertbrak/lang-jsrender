@@ -1,0 +1,40 @@
+@top Template { element* }
+
+element { directive | Text }
+
+directive {
+  Insert |
+  IfDirective { IfOpen element* IfClose } |
+  ElseDirective |
+  UnlessDirective { UnlessOpen element* UnlessClose } |
+  ForDirective { ForOpen element* ForClose } |
+  Comment
+}
+
+@skip {space} {
+  Insert { ("{{" ":" | "{{" ">") DirectiveContent "}}" }
+  ElseDirective { "{{" "else" DirectiveContent* "}}" }
+  IfOpen { "{{" "if" DirectiveContent "}}" }
+  IfClose { "{{/" "if" "}}" }
+  UnlessOpen { "{{" "unless" DirectiveContent "}}" }
+  UnlessClose { "{{/" "unless" "}}" }
+  ForOpen { "{{" "for" DirectiveContent "}}" }
+  ForClose { "{{/" "for" "}}" }
+}
+
+@local tokens {
+  commentEnd { "--}}" }
+  @else commentContent
+}
+
+@skip {} {
+  Comment { "{{!--" (commentContent)* commentEnd }
+}
+
+@tokens {
+  Text { ![{] Text? | "{" (@eof | ![%{] Text?) }
+  space { @whitespace+ }
+  DirectiveContent { ![}] DirectiveContent? | "}" (@eof | ![}] DirectiveContent?) }
+  @precedence { space DirectiveContent }
+  "{{" "}}" "{{/" "if" "else" "for" "unless" ":" ">"
+}
