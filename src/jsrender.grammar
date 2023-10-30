@@ -1,26 +1,35 @@
 @top Template { element* }
 
 element { directive | Text }
+conditionalElement { directive | ElseDirective | Text }
 
 directive {
   Insert |
-  IfDirective { IfOpen element* IfClose } |
-  ElseDirective |
-  UnlessDirective { UnlessOpen element* UnlessClose } |
   ForDirective { ForOpen element* ForClose } |
+  IfDirective { IfOpen conditionalElement* IfClose } |
+  UnlessDirective { UnlessOpen conditionalElement* UnlessClose } |
   Comment
 }
 
 @skip {space} {
-  Insert { ("{{" ":" | "{{" ">") DirectiveContent "}}" }
-  ElseDirective { "{{" "else" DirectiveContent* "}}" }
-  IfOpen { "{{" "if" DirectiveContent "}}" }
-  IfClose { "{{/" "if" "}}" }
-  UnlessOpen { "{{" "unless" DirectiveContent "}}" }
-  UnlessClose { "{{/" "unless" "}}" }
-  ForOpen { "{{" "for" DirectiveContent "}}" }
-  ForClose { "{{/" "for" "}}" }
+  Insert { startInsert DirectiveContent "}}" }
+  ElseDirective { startElse DirectiveContent? "}}" }
+  IfOpen { startIf DirectiveContent "}}" }
+  IfClose { endIf "}}" }
+  UnlessOpen { startUnless DirectiveContent "}}" }
+  UnlessClose { endUnless "}}" }
+  ForOpen { startFor DirectiveContent "}}" }
+  ForClose { endFor "}}" }
 }
+
+startInsert { "{{" ":" | "{{" ">" }
+startElse { "{{" "else" }
+startIf { "{{" "if" }
+endIf { "{{/" "if" }
+startUnless { "{{" "unless" }
+endUnless { "{{/" "unless" }
+startFor { "{{" "for" }
+endFor { "{{/" "for" }
 
 @local tokens {
   commentEnd { "--}}" }
