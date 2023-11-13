@@ -1,11 +1,10 @@
 <!-- NOTE: README.md is generated from src/README.md -->
 
-# @codemirror/lang-liquid [![NPM version](https://img.shields.io/npm/v/@codemirror/lang-liquid.svg)](https://www.npmjs.org/package/@codemirror/lang-liquid)
+# @codemirror/lang-jsrender [![NPM version](https://img.shields.io/npm/v/@codemirror/lang-jsrender.svg)](https://www.npmjs.org/package/@codemirror/lang-jsrender)
 
-[ [**WEBSITE**](https://codemirror.net/) | [**ISSUES**](https://github.com/codemirror/dev/issues) | [**FORUM**](https://discuss.codemirror.net/c/next/) | [**CHANGELOG**](https://github.com/codemirror/lang-liquid/blob/main/CHANGELOG.md) ]
+[ [**WEBSITE**](https://codemirror.net/) | [**ISSUES**](https://github.com/codemirror/dev/issues) | [**FORUM**](https://discuss.codemirror.net/c/next/) | [**CHANGELOG**](https://github.com/codemirror/lang-jsrender/blob/main/CHANGELOG.md) ]
 
-This package implements [Liquid
-template](https://shopify.github.io/liquid/) support for the
+This package implements [JsRender](https://shopify.github.io/jsrender/) support for the
 [CodeMirror](https://codemirror.net/) code editor.
 
 The [project page](https://codemirror.net/) has more information, a
@@ -22,10 +21,10 @@ to communication around the project.
 
 ## API Reference
 
-@liquid
+@jsrender
 
-@liquidLanguage
+@jsrenderLanguage
 
-@LiquidCompletionConfig
+@jsrenderCompletionConfig
 
-@liquidCompletionSource
+@jsrenderCompletionSource

@@ -4,7 +4,6 @@ import {styleTags, tags as t} from "@lezer/highlight"
 import {parseMixed} from "@lezer/common"
 import {parser} from "./jsrender.grammar"
 import {jsrenderCompletionSource, JsrenderCompletionConfig} from "./complete"
-export {jsrenderCompletionSource, JsrenderCompletionConfig}
 
 const tagLanguage = LRLanguage.define({
   name: "jsrender",
@@ -45,14 +44,13 @@ export const jsrenderLanguage = makeJsrender(baseHTML.language)
 /// Liquid template support.
 export function jsrender(config: JsrenderCompletionConfig & {
   /// Provide an HTML language configuration to use as a base.
-  base?: LanguageSupport,
-  completionFunc?: any,
-} = {}) {
+  base?: LanguageSupport
+} = { schemaInfo: {}, schemaRoot: "" }) {
   let base = config.base || baseHTML
   let lang = base.language == baseHTML.language ? jsrenderLanguage : makeJsrender(base.language)
   return new LanguageSupport(lang, [
     base.support,
-    lang.data.of({autocomplete: (config.completionFunc ? config.completionFunc() : jsrenderCompletionSource(config))}),
+    lang.data.of({autocomplete: jsrenderCompletionSource(config)}),
     base.language.data.of({closeBrackets: {brackets: [""]}})
   ])
 }
