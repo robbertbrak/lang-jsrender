@@ -1,7 +1,7 @@
 {
-  "name": "@codemirror/lang-liquid",
+  "name": "@codemirror/lang-jsrender",
   "version": "6.0.1",
-  "description": "Liquid template support for the CodeMirror code editor",
+  "description": "JsRender template support for the CodeMirror code editor",
   "scripts": {
     "test": "cm-runtests",
     "prepare": "cm-buildhelper src/jsrender.ts"
@@ -12,9 +12,8 @@
     "liquid"
   ],
   "author": {
-    "name": "Marijn Haverbeke",
-    "email": "marijn@haverbeke.berlin",
-    "url": "http://marijnhaverbeke.nl"
+    "name": "Robbert Brak",
+    "url": "https://www.4me.com"
   },
   "type": "module",
   "main": "dist/index.cjs",
@@ -39,6 +38,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/codemirror/lang-liquid.git"
+    "url": "https://github.com/robbertbrak/lang-jsrender.git"
   }
 }
