@@ -50,7 +50,7 @@ export function jsrender(config: JsrenderCompletionConfig & {
   let lang = base.language == baseHTML.language ? jsrenderLanguage : makeJsrender(base.language)
   return new LanguageSupport(lang, [
     base.support,
-    lang.data.of({autocomplete: jsrenderCompletionSource(config)}),
-    base.language.data.of({closeBrackets: {brackets: [""]}})
+    lang.data.of({ autocomplete: jsrenderCompletionSource(config) }),
+    base.language.data.of({closeBrackets: {brackets: ["<", "'", '"']}})
   ])
 }
