@@ -4,7 +4,8 @@
   "description": "JsRender template support for the CodeMirror code editor",
   "scripts": {
     "test": "cm-runtests",
-    "prepare": "cm-buildhelper src/jsrender.ts"
+    "prepare": "cm-buildhelper src/jsrender.ts",
+    "prepack": "cm-buildhelper src/jsrender.ts"
   },
   "keywords": [
     "editor",
